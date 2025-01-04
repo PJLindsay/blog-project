@@ -43,3 +43,9 @@ CLOUDINARY_CLOUD_NAME=<your-cloud-name>
 CLOUDINARY_API_KEY=<your-api-key>
 CLOUDINARY_API_SECRET=<your-api-secret>
 ```
+
+### Points of interest
+togglePostLikeStatus() in /actions/posts/ will eventually update the state of the liked icon (color change)
+but it takes a short while to update on screen.
+
+If we want a better UX, we can useOptimistic() hook to assume the save/update will succeed, so we won't get a delay, then rollback in the event there was an error (so we get faster UI feedback about the heart changing colour [for a like] after it's clicked/toggled)
