@@ -41,3 +41,4 @@ node_modules
 
 #sqllite
 data.db
+posts.db
