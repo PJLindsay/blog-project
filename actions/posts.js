@@ -3,6 +3,7 @@
 // Server actions go in here...
 import { redirect } from "next/navigation";
 import { storePost } from "@/lib/posts";
+import { uploadImage } from "@/lib/cloudinary";
 
 // example of a server action
 export async function createPost(prevState, formData) {
@@ -10,13 +11,15 @@ export async function createPost(prevState, formData) {
   const image = formData.get("image");
   const content = formData.get("content");
 
+  console.log("title ==> ", title);
+
   let errors = [];
 
-  if (!title || title.length.trim().length === 0) {
+  if (!title || title.trim().length === 0) {
     errors.push("Title is required.");
   }
 
-  if (!content || content.length.trim().length === 0) {
+  if (!content || content.trim().length === 0) {
     errors.push("Content is required.");
   }
 
@@ -28,8 +31,18 @@ export async function createPost(prevState, formData) {
     return { errors };
   }
 
+  let imageUrl;
+
+  try {
+    imageUrl = await uploadImage(image);
+  } catch (error) {
+    throw new Error(
+      "Image upload failed, post was not created. Please try again later.",
+    );
+  }
+
   storePost({
-    imageUrl: "",
+    imageUrl: imageUrl,
     title,
     content,
     userId: 1,

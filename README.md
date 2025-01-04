@@ -28,20 +28,10 @@ Data mutation strategies:
 * Standalone backend (separate API)
 * Integrated NextJS App (with server actions)
 
-Form actions vs Server actions
-* at time of recording, Form actions are not stable in react
+Note: this app uses Cloudinary to simplify the image management coding 
+(to avoid the hassle of setting up an AWS S3 bucket)
 
-Form action example:
-(see app/new-post/page.js)
-
-```
-function createPost(formData) {
-
-  formData.get()
-  ...
-}
-
-<form action={createPost}>
-...
-</form>
-```
+make a .env.local file with environment variables for your Cloudinary account
+CLOUDINARY_CLOUD_NAME=<your-cloud-name>
+CLOUDINARY_API_KEY=<your-api-key>
+CLOUDINARY_API_SECRET=<your-api-secret>
