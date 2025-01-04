@@ -28,10 +28,14 @@ Data mutation strategies:
 * Standalone backend (separate API)
 * Integrated NextJS App (with server actions)
 
-Note: this app uses Cloudinary to simplify the image management coding 
-(to avoid the hassle of setting up an AWS S3 bucket)
+## Cloudinary usage
+to avoid the hassle of setting up an AWS S3 bucket - we use Cloudinary
 
-make a .env.local file with environment variables for your Cloudinary account
+register for an account at Cloudinary
+
+put environment variables in your .env.local file for your Cloudinary account
+```
 CLOUDINARY_CLOUD_NAME=<your-cloud-name>
 CLOUDINARY_API_KEY=<your-api-key>
 CLOUDINARY_API_SECRET=<your-api-secret>
+```
