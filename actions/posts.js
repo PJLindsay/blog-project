@@ -49,6 +49,11 @@ export async function createPost(prevState, formData) {
     userId: 1,
   });
 
+  // revalidate *all data* - we will tweak cache refreshing later\
+  // because of aggressive caching in production (and pre-built)...
+  // we won't see new posts (because they were created AFTER the build)
+  // revalidatePath()... to update cache will make this problem in production go away (npm run build && npm run start)
+  revalidatePath("/", "/layout");
   redirect("/feed");
 }
 
