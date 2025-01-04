@@ -28,6 +28,10 @@ Data mutation strategies:
 * Standalone backend (separate API)
 * Integrated NextJS App (with server actions)
 
+## Database
+all database logic is in /lib/posts.js
+a sqlite3 database is created (if it does not already exist) when the app is started
+
 ## Cloudinary usage
 to avoid the hassle of setting up an AWS S3 bucket - we use Cloudinary
 
